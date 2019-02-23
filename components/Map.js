@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { SafeAreaView, Text } from 'react-native';
 
-class Likes extends Component {
+class Map extends Component {
   render() {
     return (
       <SafeAreaView
@@ -17,4 +17,4 @@ class Likes extends Component {
   }
 }
 
-export { Likes };
+export { Map };

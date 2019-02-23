@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FlatList, SafeAreaView, TouchableOpacity } from 'react-native';
 import { randomColor } from '../utils/index';
 
-class Profile extends Component {
+class Food extends Component {
   renderCard = () => (
     <TouchableOpacity
       style={{
@@ -32,4 +32,4 @@ class Profile extends Component {
   }
 }
 
-export { Profile };
+export { Food };

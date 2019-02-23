@@ -1,17 +1,32 @@
 import React, { Component } from 'react';
-import { SafeAreaView, Text } from 'react-native';
+import { FlatList, SafeAreaView, TouchableOpacity } from 'react-native';
+import { randomColor } from '../utils/index';
 
 class Settings extends Component {
+  renderCard = () => (
+    <TouchableOpacity
+      style={{
+        marginTop: 10,
+        marginHorizontal: 10,
+        flex: 1,
+        minHeight: 120,
+        borderRadius: 10,
+        backgroundColor: randomColor(),
+      }}
+    />
+  );
+
   render() {
     return (
       <SafeAreaView
         style={{
           flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
         }}
       >
-        <Text>Settings</Text>
+        <FlatList
+          data={[...new Array(9)].map((v, i) => ({ key: `item_${i}` }))}
+          renderItem={this.renderCard}
+        />
       </SafeAreaView>
     );
   }

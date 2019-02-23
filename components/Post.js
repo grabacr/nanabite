@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FlatList, SafeAreaView, TouchableOpacity } from 'react-native';
 import { randomColor } from '../utils/index';
 
-class Bookmarks extends Component {
+class Post extends Component {
   renderCard = () => (
     <TouchableOpacity
       style={{
@@ -32,4 +32,4 @@ class Bookmarks extends Component {
   }
 }
 
-export { Bookmarks };
+export { Post };

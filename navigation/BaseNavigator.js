@@ -4,28 +4,51 @@ import {
   createBottomTabNavigator,
   createStackNavigator,
 } from 'react-navigation';
+
+import {
+  AppRegistry,
+  Platform,
+  StatusBar,
+  StyleSheet,
+  View,
+  Button,
+  Image,
+  Text,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { MultiBar, MultiBarToggle } from 'react-native-multibar';
 
-import { Bookmarks, Likes, Private, Profile, Settings } from '../components';
+import { News, Food, Map, Pay, Post, Settings, Profile } from '../components';
 import { Routes } from './Routes';
+
+class LogoTitle extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Image
+          source={require('../assets/images/gbyk/n-1.png')}
+          style={{ width: 30, height: 30 }}
+        />
+      </View>
+    );
+  }
+}
 
 const TabsNavigator = createBottomTabNavigator(
   {
-    [Routes.TabsBookmarks]: {
-      screen: Bookmarks,
+    [Routes.News]: {
+      screen: News,
       navigationOptions: () => ({
         tabBarIcon: ({ tintColor }) => (
           <Icon name="bookmark" color={tintColor} size={24} />
         ),
       }),
     },
-    [Routes.TabsLikes]: {
-      screen: Likes,
+    [Routes.Food]: {
+      screen: Food,
+      // tabBarVisible: false,
       navigationOptions: () => ({
-        tabBarIcon: ({ tintColor }) => (
-          <Icon name="heart" color={tintColor} size={24} />
-        ),
+        tabBarIcon: () => <LogoTitle />,
       }),
     },
     MultiBar: {
@@ -37,17 +60,17 @@ const TabsNavigator = createBottomTabNavigator(
             actionSize={30}
             routes={[
               {
-                routeName: Routes.OtherScreen,
+                routeName: Routes.Map,
                 color: '#FF8360',
                 icon: <Icon name="rocket" color="#333333" size={15} />,
               },
               {
-                routeName: Routes.OtherScreen,
+                routeName: Routes.Pay,
                 color: '#E8E288',
                 icon: <Icon name="dashboard" color="#333333" size={15} />,
               },
               {
-                routeName: Routes.OtherScreen,
+                routeName: Routes.Post,
                 color: '#7DCE82',
                 icon: <Icon name="gears" color="#333333" size={15} />,
               },
@@ -60,15 +83,15 @@ const TabsNavigator = createBottomTabNavigator(
         navigationDisabled: true,
       },
     },
-    [Routes.TabsPrivate]: {
-      screen: Private,
+    [Routes.Settings]: {
+      screen: Settings,
       navigationOptions: () => ({
         tabBarIcon: ({ tintColor }) => (
           <Icon name="lock" color={tintColor} size={24} />
         ),
       }),
     },
-    [Routes.TabsProfile]: {
+    [Routes.Profile]: {
       screen: Profile,
       navigationOptions: () => ({
         tabBarIcon: ({ tintColor }) => (
@@ -78,13 +101,23 @@ const TabsNavigator = createBottomTabNavigator(
     },
   },
   {
+    // initialRouteName: Routes.News,
+    // defaultNavigationOptions: {
+    //   headerStyle: {
+    //     backgroundColor: '#f4511e',
+    //   },
+    //   headerTintColor: '#fff',
+    //   headerTitleStyle: {
+    //     fontWeight: 'bold',
+    //   },
+    // },
     tabBarComponent: MultiBar,
     tabBarOptions: {
-      showLabel: false,
-      activeTintColor: '#F8F8F8',
-      inactiveTintColor: '#586589',
+      // showLabel: false,
+      activeTintColor: '#000FFF',
+      inactiveTintColor: '#1DA2FF',
       style: {
-        backgroundColor: '#171F33',
+        backgroundColor: '#F8F8F8',
       },
       tabStyle: {},
     },
@@ -95,7 +128,9 @@ const BaseNavigatorContainer = createAppContainer(
   createStackNavigator(
     {
       [Routes.Tabs]: TabsNavigator,
-      [Routes.OtherScreen]: Settings,
+      [Routes.Map]: Settings,
+      [Routes.Pay]: Pay,
+      [Routes.Post]: Post,
     },
     {
       headerMode: 'none',
